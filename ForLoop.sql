@@ -43,3 +43,18 @@ BEGIN
 END;
 
 --------------------
+
+DECLARE
+    v_star   VARCHAR2 (100);
+BEGIN
+    FOR i IN 1 .. 5
+    LOOP
+        FOR j IN 1 .. i
+        LOOP
+            v_star := v_star || '*';
+        END LOOP;
+
+        DBMS_OUTPUT.put_line (v_star);
+        v_star := NULL;
+    END LOOP;
+END;
