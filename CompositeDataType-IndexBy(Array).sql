@@ -1,4 +1,4 @@
-/* Formatted on 3/31/2023 5:41:43 PM (QP5 v5.326) */
+/* Formatted on 3/31/2023 8:26:42 PM (QP5 v5.326) */
 DECLARE
     TYPE tab_no IS TABLE OF VARCHAR2 (100)
         INDEX BY PLS_INTEGER;
@@ -17,7 +17,7 @@ END;
 
 DECLARE
     TYPE tab_no IS TABLE OF VARCHAR2 (100)
-        INDEX BY pls_integer;
+        INDEX BY PLS_INTEGER;
 
     v_tab_no   tab_no;
     v_total    NUMBER;
@@ -41,4 +41,11 @@ BEGIN
                 'the element ' || i || 'is not exist in the array');
         END IF;
     END LOOP;
+
+    v_total := v_tab_no.COUNT;
+    DBMS_OUTPUT.put_line ('the total elements in the array=' || v_total);
+    DBMS_OUTPUT.put_line (
+        'the first element index in the array=' || v_tab_no.FIRST);
+    DBMS_OUTPUT.put_line (
+        'the Next element index after index 3=' || v_tab_no.NEXT (3));
 END;
