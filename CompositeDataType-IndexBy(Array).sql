@@ -1,4 +1,4 @@
-/* Formatted on 3/31/2023 8:26:42 PM (QP5 v5.326) */
+/* Formatted on 3/31/2023 8:44:29 PM (QP5 v5.326) */
 DECLARE
     TYPE tab_no IS TABLE OF VARCHAR2 (100)
         INDEX BY PLS_INTEGER;
@@ -48,4 +48,29 @@ BEGIN
         'the first element index in the array=' || v_tab_no.FIRST);
     DBMS_OUTPUT.put_line (
         'the Next element index after index 3=' || v_tab_no.NEXT (3));
+END;
+
+
+---------------------------------
+
+DECLARE
+    TYPE tab_no IS TABLE OF employees%ROWTYPE
+        INDEX BY PLS_INTEGER;
+
+    v_tab_no  tab_no ;
+BEGIN
+    FOR i IN 100 .. 104
+    LOOP
+        SELECT *
+          INTO v_tab_no (i)
+          FROM employees
+         WHERE employee_id = i;
+
+        DBMS_OUTPUT.put_line (
+               v_tab_no (i).employee_id
+            || ' '
+            || v_tab_no (i).first_name
+            || ' '
+            || v_tab_no (i).last_name);
+    END LOOP;
 END;
