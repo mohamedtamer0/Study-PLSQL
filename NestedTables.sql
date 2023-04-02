@@ -1,4 +1,4 @@
-/* Formatted on 3/31/2023 9:41:14 PM (QP5 v5.326) */
+/* Formatted on 4/1/2023 10:07:32 AM (QP5 v5.326) */
 DECLARE
     TYPE t_name IS TABLE OF VARCHAR2 (100);
 
@@ -43,21 +43,21 @@ END;
 
 ----------------
 
-drop table x_customer;
-drop type t_tel;
+DROP TABLE x_customer;
+DROP TYPE t_tel;
 
-create or replace type t_tel as table of number;
+CREATE OR REPLACE TYPE t_tel AS TABLE OF NUMBER;
 
-create table x_customer
+CREATE TABLE x_customer
 (
-cust_id number,
-cust_name varchar2(100),
-tel t_tel
+    cust_id      NUMBER,
+    cust_name    VARCHAR2 (100),
+    tel          t_tel
 )
+NESTED TABLE tel
+    STORE AS t_tel_tbl;
 
-nested table tel store as t_tel_tbl;
+INSERT INTO x_customer (cust_id, cust_name, tel)
+     VALUES (1, 'Tamer', t_tel (2634734, 78348, 837483));
 
-insert into x_customer (cust_id,cust_name,tel)
-values (1,'Tamer',t_tel(2634734,78348,837483));
-
-select * from x_customer;
+SELECT * FROM x_customer;
