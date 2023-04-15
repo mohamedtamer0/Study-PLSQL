@@ -1,4 +1,6 @@
-/* Formatted on 4/15/2023 9:22:01 PM (QP5 v5.326) */
+/* Formatted on 4/15/2023 10:13:31 PM (QP5 v5.326) */
+-- Using = %notfound  -  %isopen  -  %rowcount
+
 DECLARE
     CURSOR c_emp IS SELECT employee_id, first_name FROM EMPLOYEES;
 
@@ -24,4 +26,18 @@ BEGIN
     DBMS_OUTPUT.put_line ('the counter for cursor now is ' || c_emp%ROWCOUNT);
 
     CLOSE c_emp;
+END;
+
+---------------------------
+
+DECLARE
+    CURSOR c_emp_dept30 IS
+        SELECT employee_id, first_name
+          FROM EMPLOYEES 
+         WHERE department_id = 30;
+BEGIN
+    FOR i IN c_emp_dept30
+    LOOP
+        DBMS_OUTPUT.put_line (i.employee_id || ' ' || i.first_name);
+    END LOOP;
 END;
