@@ -1,4 +1,4 @@
-/* Formatted on 4/27/2023 3:47:55 PM (QP5 v5.326) */
+/* Formatted on 4/27/2023 4:41:09 PM (QP5 v5.326) */
 -- Using = %notfound  -  %isopen  -  %rowcount
 
 DECLARE
@@ -135,5 +135,27 @@ BEGIN
     LOOP
         DBMS_OUTPUT.put_line (i.employee_id || ' ' || i.first_name);
     END LOOP;
+END;
 
+
+---------------------------
+--
+--- For Update CURSOR
+--
+
+DECLARE
+    CURSOR c_emp_dept30 IS
+        SELECT employee_id, first_name
+          FROM EMPLOYEES
+         WHERE department_id = 30
+        FOR UPDATE;
+BEGIN
+    FOR i IN c_emp_dept30
+    LOOP
+        UPDATE EMPLOYEES
+           SET salary = salary + 3
+         WHERE CURRENT OF c_emp_dept30;
+    END LOOP;
+
+    COMMIT;
 END;
