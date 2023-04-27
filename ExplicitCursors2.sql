@@ -1,4 +1,4 @@
-/* Formatted on 4/15/2023 10:13:31 PM (QP5 v5.326) */
+/* Formatted on 4/27/2023 3:29:43 PM (QP5 v5.326) */
 -- Using = %notfound  -  %isopen  -  %rowcount
 
 DECLARE
@@ -29,15 +29,36 @@ BEGIN
 END;
 
 ---------------------------
+--
+--- For Loop With CURSOR.
+--
 
 DECLARE
     CURSOR c_emp_dept30 IS
         SELECT employee_id, first_name
-          FROM EMPLOYEES 
+          FROM EMPLOYEES
          WHERE department_id = 30;
 BEGIN
     FOR i IN c_emp_dept30
     LOOP
         DBMS_OUTPUT.put_line (i.employee_id || ' ' || i.first_name);
+    END LOOP;
+END;
+
+
+---------------------------
+
+DECLARE
+BEGIN
+    FOR i IN (SELECT employee_id, first_name, salary
+                FROM EMPLOYEES
+               WHERE department_id = 30)
+    LOOP
+        DBMS_OUTPUT.put_line (
+            i.employee_id || ' ' || i.first_name || ' ' || i.salary);
+
+        UPDATE EMPLOYEES
+           SET salary = salary + 12
+         WHERE employee_id = i.employee_id;
     END LOOP;
 END;
