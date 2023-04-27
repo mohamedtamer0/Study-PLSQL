@@ -1,4 +1,4 @@
-/* Formatted on 4/27/2023 6:22:36 PM (QP5 v5.326) */
+/* Formatted on 4/27/2023 6:34:23 PM (QP5 v5.326) */
 DECLARE
     v_first_name   EMPLOYEES.first_name%TYPE;
 BEGIN
@@ -12,4 +12,48 @@ EXCEPTION
     WHEN NO_DATA_FOUND
     THEN
         DBMS_OUTPUT.put_line ('The Query does not retrive any record');
+END;
+
+--------------------------
+
+DECLARE
+    v_emp_id   EMPLOYEES.EMPLOYEE_ID%TYPE;
+BEGIN
+    SELECT EMPLOYEE_ID
+      INTO v_emp_id
+      FROM EMPLOYEES
+     WHERE first_name = 'John';
+EXCEPTION
+    WHEN NO_DATA_FOUND
+    THEN
+        DBMS_OUTPUT.put_line ('The Query does not retrive any record');
+    WHEN TOO_MANY_ROWS
+    THEN
+        DBMS_OUTPUT.put_line ('The Query retrive more than one record');
+    WHEN OTHERS
+    THEN
+        DBMS_OUTPUT.put_line ('Other Error');
+END;
+
+
+--------------------------
+
+DECLARE
+    v_first_name   EMPLOYEES.first_name%TYPE;
+BEGIN
+    FOR i IN 99 .. 102
+    LOOP
+        BEGIN
+            SELECT first_name
+              INTO v_first_name
+              FROM employees
+             WHERE employee_id = i;
+
+            DBMS_OUTPUT.put_line (i || ' ' || v_first_name);
+        EXCEPTION
+            WHEN NO_DATA_FOUND
+            THEN
+                NULL;
+        END;
+    END LOOP;
 END;
