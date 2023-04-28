@@ -1,4 +1,4 @@
-/* Formatted on 4/27/2023 6:34:23 PM (QP5 v5.326) */
+/* Formatted on 4/28/2023 1:35:26 PM (QP5 v5.326) */
 DECLARE
     v_first_name   EMPLOYEES.first_name%TYPE;
 BEGIN
@@ -56,4 +56,30 @@ BEGIN
                 NULL;
         END;
     END LOOP;
+END;
+
+-----------------------------
+
+DESC DEPARTMENTS;
+
+INSERT INTO DEPARTMENTS (DEPARTMENT_ID, DEPARTMENT_NAME)
+     VALUES (1, NULL);
+
+-- SQL Error : ORA-01400: cannot insert NULL into ("HR"."DEPARTMENTS"."DEPARTMENT_NAME")
+
+DECLARE
+    e_insert   EXCEPTION;
+    PRAGMA EXCEPTION_INIT (e_insert, -01400);
+BEGIN
+    INSERT INTO DEPARTMENTS (DEPARTMENT_ID, DEPARTMENT_NAME)
+         VALUES (1, NULL);
+EXCEPTION
+    WHEN e_insert
+    THEN
+        DBMS_OUTPUT.put_line ('insert failed');
+        DBMS_OUTPUT.put_line (SQLCODE);
+        DBMS_OUTPUT.put_line (SQLERRM);
+    WHEN OTHERS
+    THEN
+        NULL;
 END;
