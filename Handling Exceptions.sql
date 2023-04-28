@@ -1,4 +1,4 @@
-/* Formatted on 4/28/2023 1:35:26 PM (QP5 v5.326) */
+/* Formatted on 4/28/2023 8:36:43 PM (QP5 v5.326) */
 DECLARE
     v_first_name   EMPLOYEES.first_name%TYPE;
 BEGIN
@@ -82,4 +82,34 @@ EXCEPTION
     WHEN OTHERS
     THEN
         NULL;
+END;
+
+-------------------------
+
+DECLARE
+    e_insert   EXCEPTION;
+    PRAGMA EXCEPTION_INIT (e_insert, -01400);
+BEGIN
+    BEGIN
+        INSERT INTO DEPARTMENTS (DEPARTMENT_ID, DEPARTMENT_NAME)
+             VALUES (1, NULL);
+    EXCEPTION
+        WHEN e_insert
+        THEN
+            DBMS_OUTPUT.put_line ('insert failed');
+            DBMS_OUTPUT.put_line (SQLCODE);
+            DBMS_OUTPUT.put_line (SQLERRM);
+    END;
+
+    BEGIN
+        UPDATE EMPLOYEES
+           SET employee_id = 'ss'
+         WHERE employee_id = 100;
+    EXCEPTION
+        WHEN OTHERS
+        THEN
+            DBMS_OUTPUT.put_line ('insert failed');
+            DBMS_OUTPUT.put_line (SQLCODE);
+            DBMS_OUTPUT.put_line (SQLERRM);
+    END;
 END;
