@@ -152,7 +152,7 @@ BEGIN
 
     IF SQL%NOTFOUND
     THEN
-        raise_application_error (-20000, 'invalid emp ID');
+        raise_application_error (-20000, 'invalid emp ID');--Procedure
     END IF;
 
     COMMIT;
