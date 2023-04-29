@@ -1,4 +1,4 @@
-/* Formatted on 4/29/2023 2:39:25 PM (QP5 v5.326) */
+/* Formatted on 4/29/2023 3:19:18 PM (QP5 v5.326) */
 DECLARE
     v_first_name   EMPLOYEES.first_name%TYPE;
 BEGIN
@@ -139,4 +139,21 @@ EXCEPTION
         DBMS_OUTPUT.put_line ('invalid emp ID');
         DBMS_OUTPUT.put_line (SQLCODE);
         DBMS_OUTPUT.put_line (SQLERRM);
+END;
+
+-----------------------------
+
+DECLARE
+    v_emp_id   NUMBER := 1;
+BEGIN
+    UPDATE employees
+       SET salary = 20000
+     WHERE employee_id = v_emp_id;
+
+    IF SQL%NOTFOUND
+    THEN
+        raise_application_error (-20000, 'invalid emp ID');
+    END IF;
+
+    COMMIT;
 END;
