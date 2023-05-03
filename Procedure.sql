@@ -1,4 +1,4 @@
-/* Formatted on 03/05/2023 10:33:36 AM (QP5 v5.326) */
+/* Formatted on 03/05/2023 11:01:11 AM (QP5 v5.326) */
 CREATE OR REPLACE PROCEDURE UPDATE_SAL (P_EMP_ID   IN NUMBER,
                                         P_AMOUNT   IN NUMBER)
 IS
@@ -32,3 +32,18 @@ SELECT *
  WHERE employee_id = 100;
 
 -------------------------------------------------------
+
+SELECT *
+  FROM user_objects
+ WHERE object_name = 'UPDATE_SAL';
+
+-------------------------------------------------------
+
+  SELECT *
+    FROM user_source
+   WHERE name = 'UPDATE_SAL'
+ORDER BY line;
+
+
+--To Drop The Procedure
+DROP PROCEDURE UPDATE_SAL;
