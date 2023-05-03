@@ -1,4 +1,4 @@
-/* Formatted on 01/05/2023 5:14:28 PM (QP5 v5.326) */
+/* Formatted on 03/05/2023 10:33:36 AM (QP5 v5.326) */
 CREATE OR REPLACE PROCEDURE UPDATE_SAL (P_EMP_ID   IN NUMBER,
                                         P_AMOUNT   IN NUMBER)
 IS
@@ -23,7 +23,9 @@ EXECUTE UPDATE_SAL(100,200);
 
 --OR
 
-EXECUTE UPDATE_SAL(&emp_id,&amount);
+BEGIN
+    UPDATE_SAL (&emp_id, &amount);
+END;
 
 SELECT *
   FROM EMPLOYEES
