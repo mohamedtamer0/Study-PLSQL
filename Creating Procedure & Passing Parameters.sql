@@ -1,4 +1,4 @@
-/* Formatted on 5/5/2023 12:29:14 AM (QP5 v5.326) */
+/* Formatted on 5/5/2023 1:05:23 AM (QP5 v5.326) */
 CREATE TABLE products
 (
     prod_id      NUMBER,
@@ -28,6 +28,19 @@ END;
 
 ------------------------
 
-execute add_products(1,'IPHONE','Apple');
+EXECUTE add_products(1,'IPHONE','Apple');
 
-select * from products;
+SELECT * FROM products;
+
+------------------------
+
+EXECUTE add_products (p_prod_id=>2,p_prod_name=>'IPHONE14', p_prod_type=>'Apple');
+
+SELECT * FROM products;
+
+
+------------------------
+
+EXECUTE add_products (p_prod_name=>'Ipad',p_prod_id=>3, p_prod_type=>'Apple');
+
+SELECT * FROM products;
