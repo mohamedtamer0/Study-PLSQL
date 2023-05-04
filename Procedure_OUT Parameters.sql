@@ -1,4 +1,4 @@
-/* Formatted on 03/05/2023 11:20:08 AM (QP5 v5.326) */
+/* Formatted on 5/4/2023 11:39:16 PM (QP5 v5.326) */
 CREATE OR REPLACE PROCEDURE query_emp (
     p_emp_id       employees.employee_id%TYPE,
     p_f_name   OUT EMPLOYEES.FIRST_NAME%TYPE,
@@ -17,10 +17,24 @@ EXCEPTION
 END;
 
 ------
-Variable b_first_name varchar2(100)
-Variable b_sal number
 
-execute query_emp(105,:b_first_name,:b_sal)
+VARIABLE b_first_name VARCHAR2 ( 100 )
+VARIABLE b_sal NUMBER
 
-print b_first_name;
-print b_sal;
+EXECUTE query_emp(105,:b_first_name,:b_sal)
+
+PRINT b_first_name;
+PRINT b_sal;
+
+------------------------------
+
+-- The Other way to print the out parameter
+
+DECLARE
+    v_first_name   EMPLOYEES.FIRST_NAME%TYPE;
+    v_sal          employees.salary%TYPE;
+BEGIN
+    query_emp (105, v_first_name, v_sal);
+    DBMS_OUTPUT.put_line (v_first_name);
+    DBMS_OUTPUT.put_line (v_sal);
+END;
