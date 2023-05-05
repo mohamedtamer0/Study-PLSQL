@@ -90,5 +90,3 @@ END;
 
 SELECT First_name, salary, get_sal_tax (salary) FROM employees;
 
-
------------------------
