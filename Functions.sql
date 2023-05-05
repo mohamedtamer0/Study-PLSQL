@@ -1,4 +1,4 @@
-/* Formatted on 5/5/2023 8:49:12 PM (QP5 v5.326) */
+/* Formatted on 5/5/2023 9:13:37 PM (QP5 v5.326) */
 CREATE OR REPLACE FUNCTION get_sal (p_emp_id NUMBER)
     RETURN NUMBER
 IS
@@ -60,11 +60,35 @@ SELECT *
 SELECT LINE, TEXT
   FROM USER_SOURCE
  WHERE name = 'GET_SAL';
- 
+
 -----------------------
 
 --ORA-01403: no data found
-begin
- DBMS_OUTPUT.put_line (get_sal (99999));
-end;
 
+BEGIN
+    DBMS_OUTPUT.put_line (get_sal (99999));
+END;
+
+-----------------------
+
+--Function to Calc tax on Salary
+--if salary < 5000 then tax 10% else 15%
+
+CREATE OR REPLACE FUNCTION get_sal_tax (p_sal NUMBER)
+    RETURN NUMBER
+IS
+BEGIN
+    IF p_sal < 5000
+    THEN
+        RETURN p_sal * (10 / 100);
+    ELSE
+        RETURN p_sal * (15 / 100);
+    END IF;
+END;
+
+--
+
+SELECT First_name, salary, get_sal_tax (salary) FROM employees;
+
+
+-----------------------
