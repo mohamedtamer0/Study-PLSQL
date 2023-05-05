@@ -60,3 +60,11 @@ SELECT *
 SELECT LINE, TEXT
   FROM USER_SOURCE
  WHERE name = 'GET_SAL';
+ 
+-----------------------
+
+--ORA-01403: no data found
+begin
+ DBMS_OUTPUT.put_line (get_sal (99999));
+end;
+
