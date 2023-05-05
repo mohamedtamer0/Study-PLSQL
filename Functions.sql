@@ -1,4 +1,4 @@
-/* Formatted on 5/5/2023 8:14:42 PM (QP5 v5.326) */
+/* Formatted on 5/5/2023 8:49:12 PM (QP5 v5.326) */
 CREATE OR REPLACE FUNCTION get_sal (p_emp_id NUMBER)
     RETURN NUMBER
 IS
@@ -40,4 +40,23 @@ VARIABLE b_salary NUMBER;
 
 EXECUTE :b_salary:= get_sal( 100);
 
-print b_salary;
+PRINT b_salary;
+
+-----------------------
+-- 4 as part of select
+
+SELECT get_sal (100) FROM DUAL;
+
+SELECT employee_id, first_name, get_sal (employee_id)
+  FROM employees
+ WHERE department_id = 20;
+
+-----------------------
+
+SELECT *
+  FROM user_objects
+ WHERE object_name = 'GET_SAL';
+
+SELECT LINE, TEXT
+  FROM USER_SOURCE
+ WHERE name = 'GET_SAL';
