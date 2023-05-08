@@ -1,4 +1,4 @@
-/* Formatted on 5/5/2023 11:16:58 PM (QP5 v5.326) */
+/* Formatted on 08/05/2023 12:49:28 PM (QP5 v5.326) */
 DROP TABLE student;
 
 CREATE TABLE student
@@ -81,7 +81,11 @@ END;
 --------------------------
 
 
-execute GENERAL_STUDENT.INSERT_STUDENT('Mohamed Tamer','08-MAY-23');
-execute GENERAL_STUDENT.INSERT_STUDENT('Osama Mohamed','08-MAY-23');
+EXECUTE GENERAL_STUDENT.INSERT_STUDENT('Mohamed Tamer','08-MAY-23');
+EXECUTE GENERAL_STUDENT.INSERT_STUDENT('Osama Mohamed','08-MAY-23');
 
-select * from STUDENT ;
+SELECT * FROM STUDENT;
+
+EXECUTE GENERAL_STUDENT.delete_STUDENT(1);
+
+select GENERAL_STUDENT.GET_NAME(2)from dual;
