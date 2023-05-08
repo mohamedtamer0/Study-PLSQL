@@ -77,3 +77,11 @@ IS
             RETURN NULL;
     END;
 END;
+
+--------------------------
+
+
+execute GENERAL_STUDENT.INSERT_STUDENT('Mohamed Tamer','08-MAY-23');
+execute GENERAL_STUDENT.INSERT_STUDENT('Osama Mohamed','08-MAY-23');
+
+select * from STUDENT ;
