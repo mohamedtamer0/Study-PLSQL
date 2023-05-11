@@ -8,3 +8,5 @@ END;
 ------------------
 
 execute dbms_outPut.Put_line('60 mile :=' || 60 * global_Measurement.c_mile_to_km|| ' KM');
+
+execute dbms_outPut.Put_line('100 KM :=' || 100 * global_Measurement.c_kilo_to_mile|| ' Mile');
