@@ -1,4 +1,4 @@
-/* Formatted on 5/11/2023 10:38:39 PM (QP5 v5.326) */
+/* Formatted on 5/11/2023 10:42:36 PM (QP5 v5.326) */
 CREATE OR REPLACE PACKAGE global_Measurement
 IS
     c_mile_to_km     CONSTANT NUMBER := 1.6093;
@@ -21,3 +21,5 @@ IS
 BEGIN
     RETURN p_value * global_Measurement.c_mile_to_km;
 END;
+
+SELECT get_mile_to_km (100) FROM DUAL;
