@@ -1,4 +1,4 @@
-/* Formatted on 08/05/2023 12:57:03 PM (QP5 v5.326) */
+/* Formatted on 5/11/2023 10:38:39 PM (QP5 v5.326) */
 CREATE OR REPLACE PACKAGE global_Measurement
 IS
     c_mile_to_km     CONSTANT NUMBER := 1.6093;
@@ -7,6 +7,17 @@ END;
 
 ------------------
 
-execute dbms_outPut.Put_line('60 mile :=' || 60 * global_Measurement.c_mile_to_km|| ' KM');
+EXECUTE dbms_outPut.Put_line('60 mile :=' || 60 * global_Measurement.c_mile_to_km|| ' KM');
 
-execute dbms_outPut.Put_line('100 KM :=' || 100 * global_Measurement.c_kilo_to_mile|| ' Mile');
+EXECUTE dbms_outPut.Put_line('100 KM :=' || 100 * global_Measurement.c_kilo_to_mile|| ' Mile');
+
+------------------
+
+--You can create function that read from this package
+
+CREATE OR REPLACE FUNCTION get_mile_to_km (p_value NUMBER)
+    RETURN NUMBER
+IS
+BEGIN
+    RETURN p_value * global_Measurement.c_mile_to_km;
+END;
