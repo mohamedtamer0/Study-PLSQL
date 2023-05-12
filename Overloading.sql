@@ -1,4 +1,4 @@
-/* Formatted on 5/13/2023 2:04:29 AM (QP5 v5.326) */
+/* Formatted on 5/13/2023 2:16:00 AM (QP5 v5.326) */
 DROP TABLE customer;
 
 CREATE TABLE customer
@@ -39,3 +39,7 @@ IS
         COMMIT;
     END;
 END;
+
+EXECUTE overload_procedure.add_cust(1,'Tamer','13-MAY-2023');
+
+SELECT * FROM customer;
