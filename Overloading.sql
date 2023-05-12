@@ -1,4 +1,4 @@
-/* Formatted on 5/13/2023 1:47:22 AM (QP5 v5.326) */
+/* Formatted on 5/13/2023 2:04:29 AM (QP5 v5.326) */
 DROP TABLE customer;
 
 CREATE TABLE customer
@@ -7,3 +7,35 @@ CREATE TABLE customer
     name        VARCHAR2 (100),
     birthday    DATE
 );
+
+-----------------------
+
+CREATE OR REPLACE PACKAGE overload_procedure
+IS
+    PROCEDURE add_cust (p_id NUMBER, p_name VARCHAR2, p_bd DATE);
+
+    PROCEDURE add_cust (p_id NUMBER, p_name VARCHAR2);
+END;
+
+-------
+
+CREATE OR REPLACE PACKAGE BODY overload_procedure
+IS
+    PROCEDURE add_cust (p_id NUMBER, p_name VARCHAR2, p_bd DATE)
+    IS
+    BEGIN
+        INSERT INTO customer (cust_id, name, birthday)
+             VALUES (p_id, p_name, p_bd);
+
+        COMMIT;
+    END;
+
+    PROCEDURE add_cust (p_id NUMBER, p_name VARCHAR2)
+    IS
+    BEGIN
+        INSERT INTO customer (cust_id, name)
+             VALUES (p_id, p_name);
+
+        COMMIT;
+    END;
+END;
