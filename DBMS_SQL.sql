@@ -1,4 +1,9 @@
-/* Formatted on 5/13/2023 8:24:34 PM (QP5 v5.326) */
+/* Formatted on 5/27/2023 10:28:28 PM (QP5 v5.326) */
+CREATE TABLE emp1
+(
+    empid    NUMBER
+);
+
 CREATE OR REPLACE PROCEDURE delete_any_table (p_table_name VARCHAR2)
 IS
     v_no_rec   NUMBER;
@@ -14,4 +19,4 @@ BEGIN
     COMMIT;
 END;
 
-EXECUTE delete_any_table('customer');
+EXECUTE delete_any_table('emp1');
